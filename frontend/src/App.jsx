@@ -2,6 +2,14 @@ import { useState } from 'react'
 import './App.css'
 import logo from './assets/logo.jpeg'
 import instructorBg from './assets/instructor.jpg'
+import success01 from './assets/success-01.jpeg'
+import success02 from './assets/success-02.jpeg'
+import success03 from './assets/success-03.jpeg'
+import success04 from './assets/success-04.jpeg'
+import success05 from './assets/success-05.jpeg'
+import success06 from './assets/success-06.jpeg'
+import success07 from './assets/success-07.jpeg'
+import success08 from './assets/success-08.jpeg'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 
@@ -13,6 +21,7 @@ const navLinks = [
   { id: 'areas', label: 'Areas' },
   { id: 'price', label: 'Pricing' },
   { id: 'testimonial', label: 'Reviews' },
+  { id: 'success', label: 'Success Wall' },
   { id: 'blog', label: 'Blog' },
   { id: 'contact', label: 'Contact' },
 ]
@@ -21,6 +30,17 @@ const heroStats = [
   { label: 'Learners Trained', value: '2.5k+' },
   { label: 'Avg. First-Time Pass', value: '87%' },
   { label: 'Cities Covered', value: '14' },
+]
+
+const successPhotos = [
+  { name: 'Amelia B.', detail: 'Passed in Rochdale • Manual', image: success01 },
+  { name: 'Imran S.', detail: 'First-time pass • Automatic', image: success02 },
+  { name: 'Naiema K.', detail: 'Mock-test champion', image: success03 },
+  { name: 'Syeeda L.', detail: 'Confidence refresher', image: success04 },
+  { name: 'Yusuf D.', detail: 'Fast-track intensive', image: success05 },
+  { name: 'Haroon M.', detail: 'Route-ready in Oldham', image: success06 },
+  { name: 'Hiba R.', detail: 'Motorway-ready grad', image: success07 },
+  { name: 'Tariq J.', detail: 'Manual license secured', image: success08 },
 ]
 
 const services = [
@@ -196,34 +216,38 @@ function App() {
       </header>
 
       <div className="nav-shell">
-        <div className="brand-pill" onClick={() => handleNavClick('home')}>
-          <img src={logo} alt="Bash Driving School logo" />
-          <div>
-            <span>Since 2012</span>
-            <h1>Bash Driving School</h1>
+        <div className="nav-wrapper">
+          <div className="brand-pill" onClick={() => handleNavClick('home')}>
+            <img src={logo} alt="Bash Driving School logo" />
+            <div>
+              <span>Since 2012</span>
+              <h1>Bash Driving School</h1>
+            </div>
           </div>
+          <nav className={`nav-links ${navOpen ? 'open' : ''}`}>
+            {navLinks.map((link) => (
+              <button key={link.id} type="button" onClick={() => handleNavClick(link.id)}>
+                {link.label}
+              </button>
+            ))}
+          </nav>
         </div>
-        <button
-          className={`menu-toggle ${navOpen ? 'active' : ''}`}
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded={navOpen}
-          onClick={() => setNavOpen((prev) => !prev)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-        <nav className={`nav-links ${navOpen ? 'open' : ''}`}>
-          {navLinks.map((link) => (
-            <button key={link.id} type="button" onClick={() => handleNavClick(link.id)}>
-              {link.label}
-            </button>
-          ))}
-        </nav>
-        <button className="btn secondary" type="button" onClick={() => handleNavClick('contact')}>
-          Book a lesson
-        </button>
+        <div className="nav-actions">
+          <button className="btn secondary" type="button" onClick={() => handleNavClick('contact')}>
+            Book a lesson
+          </button>
+          <button
+            className={`menu-toggle ${navOpen ? 'active' : ''}`}
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen((prev) => !prev)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
         <div className={`nav-overlay ${navOpen ? 'show' : ''}`} onClick={() => setNavOpen(false)} />
       </div>
 
@@ -236,8 +260,8 @@ function App() {
                 <h2>Confident driving starts with structured coaching.</h2>
                 <p>
                   We blend the proven flow of driving.org with Bash Driving School personality—giving
-                  you lesson plans, progress tracking, and upbeat instructors who won’t let nerves
-                  win. Manual or automatic, we tailor every hour to how you learn best.
+                  you lesson plans, progress tracking, and upbeat instructors who won’t let nerves win.
+                  Manual or automatic, we tailor every hour to how you learn best.
                 </p>
                 <div className="cta-row">
                   <a className="btn primary" href="#contact">
@@ -316,9 +340,14 @@ function App() {
           <div className="card-grid">
             {lessonCards.map((card, index) => (
               <article key={card.title} style={{ animationDelay: `${index * 120}ms` }}>
-                <h4>{card.title}</h4>
-                <p className="price">{card.price}</p>
-                <p>{card.blurb}</p>
+                <div className="card-front">
+                  <h4>{card.title}</h4>
+                  <p className="price">{card.price}</p>
+                </div>
+                <div className="card-back">
+                  <h4>{card.title}</h4>
+                  <p>{card.blurb}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -344,11 +373,6 @@ function App() {
               </article>
             ))}
           </div>
-          <ul className="area-list">
-            {areaList.map((place) => (
-              <li key={place}>{place}</li>
-            ))}
-          </ul>
         </section>
 
         <section id="price" className="section">
@@ -359,9 +383,14 @@ function App() {
           <div className="price-grid">
             {priceHighlights.map((item) => (
               <article key={item.title}>
-                <h4>{item.title}</h4>
-                <p className="value">{item.value}</p>
-                <p>{item.detail}</p>
+                <div className="price-front">
+                  <h4>{item.title}</h4>
+                  <p className="value">{item.value}</p>
+                </div>
+                <div className="price-back">
+                  <h4>{item.title}</h4>
+                  <p>{item.detail}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -378,6 +407,25 @@ function App() {
                 <p>“{item.quote}”</p>
                 <cite>{item.name}</cite>
               </blockquote>
+            ))}
+          </div>
+        </section>
+
+        <section id="success" className="section success-gallery">
+          <div className="section-header">
+            <p className="tag">Success Wall</p>
+            <h3>Faces of freshly passed licences</h3>
+            <p>We celebrate every handshake, every certificate, and every proud new driver.</p>
+          </div>
+          <div className="success-grid">
+            {successPhotos.map((item) => (
+              <figure key={item.name}>
+                <img src={item.image} alt={item.name} loading="lazy" />
+                <figcaption>
+                  <strong>{item.name}</strong>
+                  <span>{item.detail}</span>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </section>
