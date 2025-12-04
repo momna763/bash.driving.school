@@ -1304,6 +1304,9 @@ main {
   }
 }
 
+/* ==================== MOBILE RESPONSIVE DESIGN ==================== */
+
+/* Mobile Landscape & Small Tablets */
 @media (max-width: 768px) {
   h1 {
     font-size: 2.25rem;
@@ -1319,10 +1322,17 @@ main {
   
   .nav-shell {
     padding: 0.75rem var(--spacing-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .nav-wrapper {
+    gap: var(--spacing-lg);
   }
   
   .brand-pill img {
-    height: 50px;
+    height: 45px;
   }
   
   .brand-pill {
@@ -1330,19 +1340,117 @@ main {
   }
   
   .brand-pill h1 {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
   
   .brand-pill span {
-    font-size: 0.625rem;
+    font-size: 0.55rem;
   }
   
   .nav-links {
     display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+    border-bottom: 1px solid var(--border-light);
+    gap: var(--spacing-md);
+  }
+  
+  .nav-links.open {
+    display: flex;
+  }
+  
+  .nav-links button {
+    padding: var(--spacing-md);
+    text-align: center;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+    font-size: 1rem;
   }
   
   .menu-toggle {
     display: flex;
+    flex-direction: column;
+    width: 30px;
+    height: 24px;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+  }
+  
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -8px);
+  }
+  
+  .hero {
+    padding: 3rem 1rem 4rem;
+  }
+  
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .hero-content .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .hero-badges {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .hero-badge {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .stats-section {
+    margin: -2rem 1rem 2rem;
+    padding: 2rem 1rem;
+    width: calc(100% - 2rem);
   }
   
   .stats-container {
@@ -1354,13 +1462,54 @@ main {
     padding: var(--spacing-md);
   }
   
+  .stat-value {
+    font-size: 2.5rem;
+  }
+  
+  .section {
+    padding: 3rem 1rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.875rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
   .card-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
   
-  .success-gallery {
+  .premium-card {
+    padding: 1.5rem;
+  }
+  
+  .pricing-grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .pricing-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .pricing-card.featured {
+    transform: scale(1);
+  }
+  
+  .pricing-price {
+    font-size: 2.5rem;
+  }
+  
+  .success-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--spacing-md);
   }
   
@@ -1369,29 +1518,384 @@ main {
     gap: var(--spacing-md);
   }
   
-  .stats-container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+  
+  .booking-container {
+    padding: var(--spacing-lg);
+    margin: 0 var(--spacing-md);
+  }
+  
+  .form-steps {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .form-steps::before {
+    display: none;
+  }
+  
+  .form-step {
+    flex-direction: row;
+    justify-content: center;
   }
   
   .footer {
-    padding: 3rem 1.5rem 2rem;
+    padding: 3rem 1rem 2rem;
   }
   
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
   
   .footer-column:first-child {
     padding-right: 0;
-    margin-bottom: var(--spacing-md);
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+  
+  .btn-primary {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* Mobile Portrait & Small Phones */
+@media (max-width: 480px) {
+  :root {
+    --spacing-xs: 0.375rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2rem;
+    --spacing-3xl: 2.5rem;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .nav-shell {
+    padding: 0.5rem var(--spacing-sm);
+  }
+  
+  .brand-pill img {
+    height: 40px;
+  }
+  
+  .brand-pill h1 {
+    font-size: 0.875rem;
+  }
+  
+  .brand-pill span {
+    font-size: 0.5rem;
+  }
+  
+  .nav-actions {
+    gap: var(--spacing-sm);
+  }
+  
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-primary {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
   }
   
   .hero {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: 2rem var(--spacing-sm) 3rem;
   }
   
+  .hero-content h1 {
+    font-size: 1.625rem;
+    line-height: 1.1;
+  }
+  
+  .hero-content .hero-subtitle {
+    font-size: 0.9375rem;
+  }
+  
+  .hero-cta .btn {
+    max-width: 240px;
+  }
+  
+  .stats-section {
+    margin: -1.5rem var(--spacing-sm) 1.5rem;
+    padding: 1.5rem var(--spacing-sm);
+    width: calc(100% - 1rem);
+  }
+  
+  .stat-card {
+    padding: var(--spacing-sm);
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+  }
+  
+  .stat-icon {
+    font-size: 2rem;
+  }
+  
+  .section {
+    padding: 2rem var(--spacing-sm);
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9375rem;
+  }
+  
+  .premium-card {
+    padding: var(--spacing-md);
+  }
+  
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.125rem;
+  }
+  
+  .card-description {
+    font-size: 0.875rem;
+  }
+  
+  .pricing-card {
+    padding: 1.5rem var(--spacing-md);
+  }
+  
+  .pricing-price {
+    font-size: 2rem;
+  }
+  
+  .pricing-title {
+    font-size: 1.125rem;
+  }
+  
+  .card-features li {
+    font-size: 0.875rem;
+  }
+  
+  .success-gallery {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .success-image-wrapper {
+    height: 240px;
+  }
+  
+  .testimonial-card {
+    padding: var(--spacing-md);
+  }
+  
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .testimonial-text {
+    font-size: 0.875rem;
+  }
+  
+  .booking-container {
+    padding: var(--spacing-md);
+    margin: 0 var(--spacing-sm);
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem var(--spacing-sm);
+    font-size: 0.9375rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .form-actions .btn {
+    width: 100%;
+  }
+  
+  .footer {
+    padding: 2rem var(--spacing-sm) 1.5rem;
+  }
+  
+  .footer-column h5 {
+    font-size: 0.9375rem;
+  }
+  
+  .footer-column p,
+  .footer-column li {
+    font-size: 0.875rem;
+  }
+  
+  .social-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.875rem;
+  }
+}
+
+/* Extra Small Phones (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.375rem;
+  }
+  
+  .brand-pill h1 {
+    font-size: 0.75rem;
+  }
+  
+  .brand-pill img {
+    height: 35px;
+  }
+  
+  .pricing-price {
+    font-size: 1.75rem;
+  }
+  
+  .stat-value {
+    font-size: 1.75rem;
+  }
+}
+
+/* Large Tablets (iPad Pro, etc.) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .nav-links {
+    gap: var(--spacing-sm);
+  }
+  
+  .nav-links button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .hero-container {
+    gap: 2rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .success-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .nav-links button,
+  .theme-toggle,
+  .brand-pill,
+  .premium-card,
+  .pricing-card {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .nav-links button {
+    padding: 0.75rem 1rem;
+  }
+  
+  .btn-primary:hover,
+  .btn-warm:hover,
+  .premium-card:hover,
+  .pricing-card:hover {
+    transform: none;
+  }
+  
+  .btn-primary:active,
+  .btn-warm:active {
+    transform: scale(0.98);
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .nav-shell {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  input,
+  textarea,
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* Android Chrome specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) {
+  .hero::before {
+    background-attachment: scroll;
+  }
+}
+
   .hero-content h1 {
     font-size: 2.25rem;
   }
@@ -1431,11 +1935,6 @@ main {
   
   .booking-container {
     padding: var(--spacing-lg);
-  }
-  
-  .btn {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.9375rem;
   }
   
   .theme-toggle {
